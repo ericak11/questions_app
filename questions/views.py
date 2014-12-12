@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render, render_to_response
 from IPython import embed
 from django.contrib.auth.decorators import login_required
+from questions.models import Company, Question, Answer
 
 def user_login(request):
     # Like before, obtain the context for the user's request.
@@ -20,7 +21,6 @@ def user_login(request):
         # Use Django's machinery to attempt to see if the username/password
         # combination is valid - a User object is returned if it is.
         user = authenticate(username=username, password=password)
-        embed()
         # If we have a User object, the details are correct.
         # If None (Python's way of representing the absence of a value), no user
         # with matching credentials was found.
@@ -30,7 +30,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/questions/')
+                return HttpResponseRedirect('/questions/companys')
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your questions account is disabled.")
@@ -61,7 +61,6 @@ def register(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = UserForm(data=request.POST)
-        embed()
         # If the two forms are valid...
         if user_form.is_valid():
             # Save the user's form data to the database.
@@ -97,3 +96,9 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
+
+@login_required
+def companys(request):
+    company_list = Company.objects.all()
+    context_dict = {'companys': company_list}
+    return render(request, 'company/index.html', context_dict)
