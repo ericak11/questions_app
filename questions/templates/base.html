@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Questions</title>
+    </head>
+
+    <body>
+        <div>
+            <ul>
+            {% if user.is_authenticated %}
+                <li><a href="/questions/logout/">Logout</a></li>
+            {% else %}
+                <li><a href="/questions/register/">Register Here</a></li>
+            {% endif %}
+            </ul>
+        </div>
+
+        <hr />
+        <div>
+            {% block body_block %}{% endblock %}
+        </div>
+
+
+
+    </body>
+</html>
