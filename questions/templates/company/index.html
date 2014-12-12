@@ -3,7 +3,7 @@
     {% if companys %}
         <ul>
             {% for company in companys %}
-            <li>{{ company.name }}</li>
+            <li><a href="/questions/companys/{{ company.id }}">{{ company.name }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
