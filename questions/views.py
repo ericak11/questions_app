@@ -6,6 +6,14 @@ from django.shortcuts import get_object_or_404, render, render_to_response
 from IPython import embed
 from django.contrib.auth.decorators import login_required
 from questions.models import Company, Question, Answer
+from django.core.urlresolvers import reverse
+from django.views import generic
+from django.views.generic import DetailView
+
+class CompanyDetailView(generic.DetailView):
+    model = Company
+    template_name = 'company/detail.html'
+
 
 def user_login(request):
     # Like before, obtain the context for the user's request.
