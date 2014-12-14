@@ -14,6 +14,10 @@ class CompanyDetailView(generic.DetailView):
     model = Company
     template_name = 'company/detail.html'
 
+class QuestionDetailView(generic.DetailView):
+    model = Question
+    template_name = 'question/detail.html'
+
 
 def user_login(request):
     # Like before, obtain the context for the user's request.

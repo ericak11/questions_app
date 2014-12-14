@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class Company(models.Model):
@@ -26,7 +27,8 @@ class Question(models.Model):
 
 class Answer(models.Model):
     question = models.ForeignKey(Question)
+    user = models.ForeignKey(User, default=1)
+    pub_date = models.DateTimeField('date published', default=timezone.now())
     content = models.TextField(max_length=2000)
-    def __unicode__(self):              # __unicode__ on Python 2
-        return self.question
+
 

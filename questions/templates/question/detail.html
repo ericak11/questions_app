@@ -1,0 +1,10 @@
+<h1>{{ question.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<h3> answers </h3>
+{% for answer in question.answer_set.all %}
+      <li>
+        <p>{{answer.content}} </p>
+        <p>Posted by: {{answer.user}} </p></li>
+{% endfor %}
