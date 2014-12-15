@@ -1,7 +1,8 @@
 <h1>{{ company.name }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+<a href="new/">Add a question</a>
 {% for question in company.question_set.all %}
       <li><a href="/questions/question/{{question.id}}">{{question.title}}</a> - {{question.interview_round}} </li>
 {% endfor %}
+

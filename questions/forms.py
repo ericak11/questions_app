@@ -1,5 +1,9 @@
 from django.contrib.auth.models import User
+from questions.models import Company, Question, Answer
 from django import forms
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class UserForm(forms.ModelForm):
@@ -9,3 +13,11 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password', 'first_name', 'last_name')
+
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ('title', 'content', 'interview_round', 'date')
+        widgets = {
+            'date': DateInput()
+        }

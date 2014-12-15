@@ -9,4 +9,5 @@ urlpatterns = patterns('',
       url(r'^companys/$', views.companys, name='companys'),
       url(r'^companys/(?P<pk>\d+)/$', views.CompanyDetailView.as_view()),
       url(r'^question/(?P<pk>\d+)/$', views.QuestionDetailView.as_view()),
+      url(r'^companys/(?P<pk>\d+)/new/$', views.add_question, name='add_question'),
 )
