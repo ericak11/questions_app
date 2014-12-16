@@ -6,7 +6,7 @@ from django.utils import timezone
 class Company(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published',  default=timezone.now())
     def __unicode__(self):              # __unicode__ on Python 2
         return self.name
 

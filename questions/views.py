@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from questions.forms import UserForm, QuestionForm, AnswerForm
+from questions.forms import UserForm, QuestionForm, AnswerForm, CompanyForm
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render, render_to_response
 from IPython import embed
@@ -186,3 +186,38 @@ def add_answer(request, pk):
     # Render the template depending on the context.
     return render(request, 'answer/new.html', {
             'answer_form': answer_form, 'registered': registered, 'question': Question.objects.get(id=pk) })
+
+@login_required
+def add_company(request):
+    # Like before, get the request's context.
+    context = RequestContext(request)
+    registered = False
+    # If it's a HTTP POST, we're interested in processing form data.
+    if request.method == 'POST':
+        # Attempt to grab information from the raw form information.
+        # Note that we make use of both UserForm and UserProfileForm.
+        company_form = CompanyForm(data=request.POST, initial={'user': request.user})
+        # If the two forms are valid...
+        if company_form.is_valid():
+            # Save the user's form data to the database.
+            company_form.instance.user = request.user
+            company_form.save()
+
+
+            # Update our variable to tell the template registration was successful.
+            registered = True
+
+        # Invalid form or forms - mistakes or something else?
+        # Print problems to the terminal.
+        # They'll also be shown to the user.
+        else:
+            print company_form.errors
+
+    # Not a HTTP POST, so we render our form using two ModelForm instances.
+    # These forms will be blank, ready for user input.
+    else:
+        company_form = CompanyForm()
+
+    # Render the template depending on the context.
+    return render(request, 'company/new.html', {
+            'company_form': company_form, 'registered': registered})

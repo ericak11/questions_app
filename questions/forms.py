@@ -27,3 +27,7 @@ class AnswerForm(forms.ModelForm):
         model = Answer
         fields = ('content',)
 
+class CompanyForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        fields = ('name', 'location')
