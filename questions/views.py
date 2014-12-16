@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from questions.forms import UserForm, QuestionForm
+from questions.forms import UserForm, QuestionForm, AnswerForm
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render, render_to_response
 from IPython import embed
@@ -130,7 +130,6 @@ def add_question(request, pk):
             # Save the user's form data to the database.
             question_form.instance.user = request.user
             question_form.instance.company = Company.objects.get(id=pk)
-            embed()
             question_form.save()
 
 
@@ -151,3 +150,39 @@ def add_question(request, pk):
     # Render the template depending on the context.
     return render(request, 'question/new.html', {
             'question_form': question_form, 'registered': registered})
+
+@login_required
+def add_answer(request, pk):
+    # Like before, get the request's context.
+    context = RequestContext(request)
+    registered = False
+    # If it's a HTTP POST, we're interested in processing form data.
+    if request.method == 'POST':
+        # Attempt to grab information from the raw form information.
+        # Note that we make use of both UserForm and UserProfileForm.
+        answer_form = AnswerForm(data=request.POST, initial={'user': request.user, 'question': pk})
+        # If the two forms are valid...
+        if answer_form.is_valid():
+            # Save the user's form data to the database.
+            answer_form.instance.user = request.user
+            answer_form.instance.question = Question.objects.get(id=pk)
+            answer_form.save()
+
+
+            # Update our variable to tell the template registration was successful.
+            registered = True
+
+        # Invalid form or forms - mistakes or something else?
+        # Print problems to the terminal.
+        # They'll also be shown to the user.
+        else:
+            print answer_form.errors
+
+    # Not a HTTP POST, so we render our form using two ModelForm instances.
+    # These forms will be blank, ready for user input.
+    else:
+        answer_form = AnswerForm()
+
+    # Render the template depending on the context.
+    return render(request, 'answer/new.html', {
+            'answer_form': answer_form, 'registered': registered, 'question': Question.objects.get(id=pk) })

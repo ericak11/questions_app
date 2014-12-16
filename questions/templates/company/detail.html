@@ -1,3 +1,5 @@
+{% extends './base.html' %}
+    {% block body_block %}
 <h1>{{ company.name }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -6,3 +8,4 @@
       <li><a href="/questions/question/{{question.id}}">{{question.title}}</a> - {{question.interview_round}} </li>
 {% endfor %}
 
+{% endblock %}

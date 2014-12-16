@@ -30,5 +30,3 @@ class Answer(models.Model):
     user = models.ForeignKey(User, default=1)
     pub_date = models.DateTimeField('date published', default=timezone.now())
     content = models.TextField(max_length=2000)
-
-

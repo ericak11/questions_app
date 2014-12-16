@@ -1,3 +1,5 @@
+{% extends './base.html' %}
+    {% block body_block %}
 <h1>{{ question.title }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -8,3 +10,5 @@
         <p>{{answer.content}} </p>
         <p>Posted by: {{answer.user}} </p></li>
 {% endfor %}
+<a href="new/">Add an answer</a>
+{% endblock %}

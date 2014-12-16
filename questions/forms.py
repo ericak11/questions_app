@@ -21,3 +21,9 @@ class QuestionForm(forms.ModelForm):
         widgets = {
             'date': DateInput()
         }
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('content',)
+
