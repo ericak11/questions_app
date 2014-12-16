@@ -1,1 +1,1 @@
-web: python manage.py runserver
+web: gunicorn questions_app.wsgi --log-file -
