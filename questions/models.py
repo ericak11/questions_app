@@ -25,6 +25,13 @@ class Question(models.Model):
     def __unicode__(self):              # __unicode__ on Python 2
         return self.title
 
+    def challenge(self):
+        return self.interview_round in (self.code)
+
+    def regular_question(self):
+        return self.interview_round in (self.phone, self.inPerson)
+
+
 class Answer(models.Model):
     question = models.ForeignKey(Question)
     user = models.ForeignKey(User, default=1)
