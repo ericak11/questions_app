@@ -4,11 +4,12 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <p>{{ question.content }}</p>
+<p>Posted by: {{ question.user.first_name }} {{ question.user.last_name }}</p>
 <h3> answers </h3>
 {% for answer in question.answer_set.all %}
       <li>
         <p>{{answer.content}} </p>
-        <p>Posted by: {{answer.user}} </p></li>
+        <p>Posted by: {{ answer.user.first_name }} {{ answer.user.last_name }} </p></li>
 {% endfor %}
 <a href="new/">Add an answer</a>
 {% endblock %}
