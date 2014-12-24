@@ -3,7 +3,7 @@
 <h1>{{ company.name }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<a href="new/">Add a question</a>
+<a href="new/">Add a Question</a>
 {% for question in company.question_set.all %}
       <li><a href="/questions/question/{{question.id}}">{{question.title}}</a> - {{question.get_interview_round_display}} </li>
 {% endfor %}
