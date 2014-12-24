@@ -38,7 +38,7 @@ class Answer(models.Model):
     pub_date = models.DateTimeField('date published', default=timezone.now())
     content = models.TextField(max_length=2000)
 
-class Votes(models.Model):
-    number = models.IntegerField(default=0)
+class Choice(models.Model):
+    vote = models.IntegerField(default=0)
     user = models.ForeignKey(User, default=1)
     answer = models.ForeignKey(Answer)
