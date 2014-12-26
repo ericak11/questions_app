@@ -4,11 +4,11 @@
     {% if companys %}
         <ul>
             {% for company in companys %}
-            <li><a href="/questions/companys/{{ company.id }}">{{ company.name }}</a></li>
+            <li><a href="{% url 'company_detail' company.id %}">{{ company.name }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <strong>There are no companys present.</strong>
     {% endif %}
-<a href="new/">Add a company</a>
+<a href="{% url 'add_company' %}">Add a company</a>
 {% endblock %}

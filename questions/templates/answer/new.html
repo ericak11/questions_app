@@ -2,7 +2,7 @@
     {% block body_block %}
         {% if registered %}
         <strong>Your Answer has been added</strong>
-        <a href="/questions/companys">Return to the companies page</a><br />
+        <a href="{% url 'companys' %}">Return to the companies page</a><br />
         {% else %}
         <strong>Add an Answer for</strong> {{question.title}}:<br />
         <form id="answer_form" method="post" action=""
