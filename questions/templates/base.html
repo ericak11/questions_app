@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <div>
+        <div id='header'>
             <ul>
                 <li><a href="/questions/companys/">Home</a></li>
             {% if user.is_authenticated %}
@@ -19,7 +19,7 @@
         </div>
 
         <hr />
-        <div>
+        <div id='body'>
             {% block body_block %}{% endblock %}
         </div>
 
