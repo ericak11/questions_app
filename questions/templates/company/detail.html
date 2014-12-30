@@ -5,7 +5,10 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <a href="{% url 'add_question' company.id %}">Add a Question</a>
 {% for question in company.question_set.all %}
-      <li><a href="{% url 'question_detail' question.id %}">{{question.title}}</a> - {{question.get_interview_round_display}} </li>
+      <li {% if question.interview_round == "code" %} class='challenge' {% else %} class='regularQ' {% endif %}>
+        <a href="{% url 'question_detail' question.id %}">{{question.title}}</a>
+        - {{question.get_interview_round_display}}
+      </li>
 {% endfor %}
 
 {% endblock %}
