@@ -1,6 +1,9 @@
 ## Questions App
-An app that for users to submit interview questions
+An app made using Django for users to submit interview questions
+
+
+
 
 ### Future Features
 - up vote/down vote for answers
-- add styling   
+- add styling
