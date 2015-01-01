@@ -4,3 +4,24 @@ body {
 p {
   color: blue;
 }
+
+#header {
+  background-color: black;
+  padding: 10px;
+}
+#header li {
+  display: inline;
+  padding: 20px;
+  color: white;
+}
+#header a {
+  color: white;
+}
+
+#header a:hover {
+  color: red;
+}
+
+a:hover {
+ color: gray;
+}
