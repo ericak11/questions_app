@@ -25,3 +25,7 @@ p {
 a:hover {
  color: gray;
 }
+
+#place_text {
+  font-size: 14px;
+}
