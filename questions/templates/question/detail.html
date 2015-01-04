@@ -9,7 +9,9 @@
 {% for answer in question.answer_set.all %}
       <li>
         <p>{{answer.content}} </p>
-        <p>Posted by: {{ answer.user.first_name }} {{ answer.user.last_name }} </p></li>
+        <p>Posted by: {{ answer.user.first_name }} {{ answer.user.last_name }} </p>
+      </li>
+      <hr>
 {% endfor %}
 <a href="{% url 'add_answer' question.id %}">Add an answer</a>
 {% endblock %}
