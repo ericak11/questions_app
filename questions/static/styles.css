@@ -1,5 +1,5 @@
 body {
-  color: red;
+  color: gray;
 }
 p {
   color: blue;
@@ -23,7 +23,7 @@ p {
 }
 
 a:hover {
- color: gray;
+ color: yellow;
 }
 
 #place_text {
